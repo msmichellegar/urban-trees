@@ -1,9 +1,9 @@
 var test = require("tape");
 var server = require('../server.js');
 
-test("'/' returns 200 statusCode", function (t) {
+test("'/' returns 302 statusCode", function (t) {
     server.inject({method: 'GET', url: '/'}, function (res) {
-        t.equal(res.statusCode, 200, 'page loaded successfully');
+        t.equal(res.statusCode, 302, 'redirects successfully');
         t.end();
     });
 });
