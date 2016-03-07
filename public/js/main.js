@@ -71,31 +71,64 @@ function switchPage (direction) {
 
     // switches to urban if trying to go up from trees
     if (currentClass === "trees" && direction === "up") {
-        $(".bgImage").removeClass("trees");
+        $(".trees").removeClass("active");
+        $(".urban").addClass("active");
         displayPage("urban");
         replaceUrl("Urban", "/urban");
 
     // switches to trees if trying to go down from urban
     } else if (currentClass === "urban" && direction === "down") {
-        $(".bgImage").removeClass("urban");
+        $(".urban").removeClass("active");
+        $(".trees").addClass("active");
         displayPage("trees");
         replaceUrl("Trees", "/trees");
     }
 }
 
 function displayPage(pageName) {
+    var $urban = $(".urban");
+    var $trees = $(".trees");
 
-    // updates title
-    $("#title").html(pageName);
+    // transitions between images
+    if (pageName === "trees") {
 
-    // updates image
-    $(".bgImage").addClass(pageName);
+        // removes urban
+        TweenLite.to($urban, 0.7, {
+            opacity: 0.1,
+            top: -100,
+            width: "80%"
+        });
+
+        // adds trees
+        TweenLite.to($trees, 0.7, {
+            top: 0,
+            width: "100%"
+        });
+
+    } else if (pageName === "urban") {
+
+        // resets urban opacity
+        TweenLite.set($urban, {opacity: 1});
+
+        // removes trees
+        TweenLite.to($trees, 0.7, {
+            top: "100%",
+            width: "80%"
+        });
+
+        //adds urban
+        TweenLite.to($urban, 0.7, {
+            top: 0,
+            width: "100%"
+        });
+    }
+
 }
-
+//
 function getCurrentClass() {
 
     // gets current class of featured image
-    if ($(".bgImage").hasClass("urban")) {
+    if ($(".active").hasClass("urban")) {
         return "urban";
     } else {
         return "trees";
