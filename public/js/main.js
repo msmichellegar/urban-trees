@@ -1,6 +1,13 @@
 $(document).on("ready", function(){
 
-    // trigger changes on keydown
+    // displays page acccording to url path
+    if (window.location.pathname === "/urban") {
+        displayPage("urban");
+    } else if (window.location.pathname === "/trees") {
+        displayPage("trees");
+    }
+
+    // triggers changes on keydown
     $(document).keydown(function(e) {
 
         // if user presses up key
@@ -14,7 +21,7 @@ $(document).on("ready", function(){
 
     });
 
-    //trigger changes on scroll
+    // triggers changes on scroll
     $(document).mousewheel(function(e) {
 
         // if user scrolls up
@@ -36,17 +43,28 @@ function switchUrbanTrees (direction) {
 
     // switches to urban if trying to go up from trees
     if (currentClass === "trees" && direction === "up") {
-        $("#title").html("Urban");
-        $(".bgImage").removeClass("trees").addClass("urban");
+        $(".bgImage").removeClass("trees");
+        displayPage("urban");
+        replaceUrl("/urban");
 
     // switches to trees if trying to go down from urban
     } else if (currentClass === "urban" && direction === "down") {
-        $("#title").html("Trees");
-        $(".bgImage").removeClass("urban").addClass("trees");
+        $(".bgImage").removeClass("urban");
+        displayPage("trees");
+        replaceUrl("/trees");
     }
 }
 
-function getCurrentClass () {
+function displayPage(pageName) {
+
+    // updates title
+    $("#title").html(pageName);
+
+    // updates image
+    $(".bgImage").addClass(pageName);
+}
+
+function getCurrentClass() {
 
     // gets current class of featured image
     if ($(".bgImage").hasClass("urban")) {
@@ -54,4 +72,9 @@ function getCurrentClass () {
     } else {
         return "trees";
     }
+}
+
+function replaceUrl(path) {
+
+    window.history.pushState("Trees", "Trees", path);
 }
