@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+body, html, #scene, .bgImage {
+  height: 100%; }
+
+body {
+  background: #e6e6e6;
+  font-family: Arial; }
+
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 50%;
+  margin-left: -50%;
+  z-index: 3; }
+  header h1 {
+    width: 100px;
+    height: 100px;
+    background: url(/static/public/images/sonyLogo.jpg) center center no-repeat #131313;
+    background-size: contain;
+    text-indent: -5555px;
+    position: absolute;
+    left: 200px;
+    top: 0; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 50%;
+  margin-left: -50%;
+  height: 100px;
+  background: white;
+  z-index: 3;
+  font-size: 18px;
+  line-height: 100px;
+  text-align: center;
+  color: red; }
+
+#scene h3 {
+  position: absolute;
+  display: inline-block;
+  top: 200px;
+  left: 200px;
+  font-size: 60px;
+  z-index: 2; }
+
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  z-index: 1; }
+
+.trees {
+  background: url(/static/public/images/trees.jpg) center center no-repeat;
+  background-size: cover; }
+
+.urban {
+  background: url(/static/public/images/road.jpg) center center no-repeat;
+  background-size: cover; }
