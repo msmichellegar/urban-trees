@@ -15,13 +15,14 @@ function initialisePage() {
         displayPage("trees");
     }
 
+}
+
+function addEventListeners() {
+
     // reloads page on back/forward button
     window.onpopstate = function(event) {
         location.reload();
     };
-}
-
-function addEventListeners() {
 
     // triggers changes on keydown
     $(document).keydown(function(e) {
@@ -89,42 +90,47 @@ function displayPage(pageName) {
     var $urban = $(".urban");
     var $trees = $(".trees");
 
-    // transitions between images
+    // transition if scrolling to trees
     if (pageName === "trees") {
 
         // removes urban
-        TweenLite.to($urban, 0.7, {
+        TweenLite.to($urban, 0.8, {
             opacity: 0.1,
-            top: -100,
+            top: 50,
             width: "80%"
         });
 
         // adds trees
-        TweenLite.to($trees, 0.7, {
+        TweenLite.to($trees, 0.8, {
             top: 0,
             width: "100%"
         });
 
+    // transition if scrolling to urban
     } else if (pageName === "urban") {
 
         // resets urban opacity
-        TweenLite.set($urban, {opacity: 1});
+        TweenLite.set($urban, {
+            opacity: 1,
+            width: "100%",
+            top: -100
+        });
 
         // removes trees
-        TweenLite.to($trees, 0.7, {
+        TweenLite.to($trees, 0.8, {
             top: "100%",
-            width: "80%"
+            width: "100%"
         });
 
         //adds urban
-        TweenLite.to($urban, 0.7, {
+        TweenLite.to($urban, 0.8, {
             top: 0,
             width: "100%"
         });
     }
 
 }
-//
+
 function getCurrentClass() {
 
     // gets current class of featured image
